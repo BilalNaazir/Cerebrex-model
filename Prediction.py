@@ -48,7 +48,7 @@ while True:
     print(frontEndSkip(backEnd()))
     print(frontEndStress())
     end = time.time()
-    print("time taken :", end - start)
+    print("Time taken :", end - start)
 
 
 
