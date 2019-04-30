@@ -47,4 +47,3 @@ def stressValue(dataList =[]):
 
 
 
-print('s')
