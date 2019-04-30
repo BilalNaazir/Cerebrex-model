@@ -49,7 +49,7 @@ while True:
     print(frontEndStress())
     end = time.time()
     print("time taken :", end - start)
-
+    print('s')
 
 
 
