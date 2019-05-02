@@ -46,9 +46,9 @@ def frontEndStress():
     return result
 while True:
     start = time.time()
-    # print(frontEndSad(backEnd()))
-    # print(frontEndSkip(backEnd()))
-    print(frontEndStress())
+    print('sad',frontEndSad(backEnd()))
+    print('skip',frontEndSkip(backEnd()))
+    print('stress', frontEndStress())
     end = time.time()
     print("Time taken :", end - start)
 
