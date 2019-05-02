@@ -1,9 +1,5 @@
 import time
 import pickle
-
-
-
-
 def backEnd():
     from firebase import firebase   #Connecting to the backend's firebase containing live raw data
     firebase = firebase.FirebaseApplication('https://cerebrex-c0a9a.firebaseio.com', None)
