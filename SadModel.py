@@ -27,6 +27,7 @@ loaded_sad_model = pickle.load(open(filename, 'rb'))
 result = loaded_sad_model.score(x_test, y_test)
 print(result)
 
+
 def predictedValue(dataList =[]):
 
     Xnew=[dataList]
