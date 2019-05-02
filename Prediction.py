@@ -33,7 +33,7 @@ def frontEndSad(list):
     return result
 
 def frontEndSkip(list):
-    filename = 'finalized_model.sav'
+    filename = 'pickleSkipmodel.sav'
     loaded_model = pickle.load(open(filename, 'rb'))
     list2 = [[]]
     temp = [0, 1, 3, 4, 5, 8, 9, 10, 11, 12, 13]

@@ -26,20 +26,6 @@ pickle.dump(logmodel, open(filename, 'wb'))
 loaded_sad_model = pickle.load(open(filename, 'rb'))
 result = loaded_sad_model.score(x_test, y_test)
 print(result)
-# from sklearn.metrics import classification_report
-#
-# classification_report( y_test,predictions)
-#
-# from sklearn.metrics import confusion_matrix
-#
-# confusion_matrix(y_test,predictions)
-#
-# from sklearn.metrics import accuracy_score
-#
-# accuracy_score(y_test,predictions)  #The piece of code that calculates the accuracy
-# # Xnew = [[4073.333252,	4143.07666,	4048.717773,	4100.512695,	4137.94873,	4192.307617,	4106.666504,	4145.12793,	4174.358887	,4154.358887,	4101.538574,	4024.102539	,4151.794922,	4124.102539]]
-# score = logmodel.score(x_test, y_test)
-# print("Accuracy of stress model :",score*100)
 
 def stressValue(dataList =[]):
 
