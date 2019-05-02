@@ -3,7 +3,7 @@
 
 # In[21]:
 
-
+import pickle
 import pandas as pd
 
 sad_data=pd.read_csv('C:\\Users\\Bilal\\Desktop\\sad2.csv')
@@ -22,20 +22,26 @@ logmodel=LogisticRegression()
 logmodel.fit(x_train,y_train)
 predictions=logmodel.predict(x_test)
 
-from sklearn.metrics import classification_report
-
-classification_report( y_test,predictions)
-
-from sklearn.metrics import confusion_matrix
-
-confusion_matrix(y_test,predictions)
-
-from sklearn.metrics import accuracy_score
-
-accuracy_score(y_test,predictions)
-score = logmodel.score(x_test, y_test)
-print("Accuracy of sad model :",score*100)
-# In[ ]:
+filename = 'pickleSadmodel.sav'
+pickle.dump(logmodel, open(filename, 'wb'))
+loaded_sad_model = pickle.load(open(filename, 'rb'))
+result = loaded_sad_model.score(x_test, y_test)
+print(result)
+#
+# from sklearn.metrics import classification_report
+#
+# classification_report( y_test,predictions)
+#
+# from sklearn.metrics import confusion_matrix
+#
+# confusion_matrix(y_test,predictions)
+#
+# from sklearn.metrics import accuracy_score
+#
+# accuracy_score(y_test,predictions)
+# score = logmodel.score(x_test, y_test)
+# print("Accuracy of sad model :",score*100)
+# # In[ ]:
 def predictedValue(dataList =[]):
 
     Xnew=[dataList]

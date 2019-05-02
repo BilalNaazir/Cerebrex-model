@@ -1,8 +1,8 @@
-from SadModel import predictedValue
-from SkipModel import skipValue
-from StressModel import stressValue
 import time
-#
+import pickle
+
+
+
 
 def backEnd():
     from firebase import firebase   #Connecting to the backend's firebase containing live raw data
@@ -17,29 +17,47 @@ def backEnd():
 
 
 def frontEndSad(list):
+    filename = 'pickleSadmodel.sav'
+    loaded_model = pickle.load(open(filename, 'rb'))
+    list2 = [[]]
+    temp = [0, 1, 3, 4, 5, 8, 9, 10, 11, 12, 13]
+    for i in range(len(temp)):
+        list2[0].append(list[i])
+
     from firebase import firebase
     firebase = firebase.FirebaseApplication('https://cerebrex-101.firebaseio.com', None)
-    update = firebase.put('/Results/-LddRqXtD2qSyzoEekFs', "prediction", str(predictedValue(list)[0]))   #updating a value under a key
+    update = firebase.put('/Results/-LddRqXtD2qSyzoEekFs', "prediction", str(loaded_model.predict(list2)[0]))   #updating a value under a key
 
     result = firebase.get('/Results', '-LddRqXtD2qSyzoEekFs')
 
     return result
 
 def frontEndSkip(list):
+    filename = 'finalized_model.sav'
+    loaded_model = pickle.load(open(filename, 'rb'))
+    list2 = [[]]
+    temp = [0, 1, 3, 4, 5, 8, 9, 10, 11, 12, 13]
+    for i in range(len(temp)):
+        list2[0].append(list[i])
+
     from firebase import firebase
     firebase = firebase.FirebaseApplication('https://cerebrex-101.firebaseio.com', None)
-    update = firebase.put('/Skip/-LdrO5Oc8GLRupBSiKqL', "prediction", str(skipValue(list)[0]))
+    update = firebase.put('/Skip/-LdrO5Oc8GLRupBSiKqL', "prediction", str(loaded_model.predict(list2)[0]))
 
     result = firebase.get('/Skip', '-LdrO5Oc8GLRupBSiKqL')
 
     return result
 
-def frontEndStress():
-    list =[4073.333252,	4143.07666,	4048.717773, 4100.512695, 4137.94873,	 4192.307617, 4106.666504, 4145.12793, 4174.358887,4154.358887, 4101.538574, 4024.102539, 4151.794922, 4124.102539]
+def frontEndStress(list):
+    filename = 'pickleStressmodel.sav'
+    loaded_model = pickle.load(open(filename, 'rb'))
+    list1 = [[]]
+    for i in range(len(list)):
+        list1[0].append(list[i])
     from firebase import firebase
     firebase = firebase.FirebaseApplication('https://cerebrex-101.firebaseio.com', None)
 
-    update = firebase.put('/Stress/-LdrScJCDAWx5idPslrB', "predictionStress", str(stressValue(list)[0]))
+    update = firebase.put('/Stress/-LdrScJCDAWx5idPslrB', "predictionStress", str(loaded_model.predict(list1)[0]))
 
     result = firebase.get('/Stress', '-LdrScJCDAWx5idPslrB')
 
@@ -48,11 +66,6 @@ while True:
     start = time.time()
     print('sad',frontEndSad(backEnd()))
     print('skip',frontEndSkip(backEnd()))
-    print('stress', frontEndStress())
+    print('stress', frontEndStress(backEnd()))
     end = time.time()
     print("Time taken :", end - start)
-
-
-
-
-

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+import pickle
 # In[21]:
 
 
@@ -20,22 +20,31 @@ from sklearn.linear_model import LogisticRegression
 
 logmodel=LogisticRegression()
 logmodel.fit(x_train,y_train)
+
 predictions=logmodel.predict(x_test)
+filename = 'finalized_model.sav'
+pickle.dump(logmodel, open(filename, 'wb'))
 
-from sklearn.metrics import classification_report
-
-classification_report( y_test,predictions)
-
-from sklearn.metrics import confusion_matrix
-
-confusion_matrix(y_test,predictions)
-
-from sklearn.metrics import accuracy_score
-
-accuracy_score(y_test,predictions)
-score = logmodel.score(x_test, y_test)
-print("Accuracy of skip model :",score*100)
-
+loaded_model = pickle.load(open(filename, 'rb'))
+result = loaded_model.score(x_test, y_test)
+print(result)
+#
+# from sklearn.metrics import classification_report
+#
+# classification_report( y_test,predictions)
+#
+# from sklearn.metrics import confusion_matrix
+#
+# confusion_matrix(y_test,predictions)
+#
+# from sklearn.metrics import accuracy_score
+#
+# accuracy_score(y_test,predictions)
+# score = logmodel.score(x_test, y_test)
+# print("Accuracy of skip model :",score*100)
+Xnew = [[1,2,3,4,5,6,7,8,9,10,11]]
+ynew = loaded_model.predict(Xnew)
+print(ynew)
 def skipValue(dataList =[]):
 
     Xnew=[dataList]
