@@ -28,9 +28,9 @@ def frontEndSad(list):
 def frontEndSkip(list):
     from firebase import firebase
     firebase = firebase.FirebaseApplication('https://cerebrex-101.firebaseio.com', None)
-    update = firebase.put('/Results/-LddUCH9tsUnnecsLgWs', "predictionSkip", str(skipValue(list)[0]))
+    update = firebase.put('/Skip/-LdrO5Oc8GLRupBSiKqL', "prediction", str(skipValue(list)[0]))
 
-    result = firebase.get('/Results', '-LddUCH9tsUnnecsLgWs')
+    result = firebase.get('/Skip', '-LdrO5Oc8GLRupBSiKqL')
 
     return result
 
@@ -38,16 +38,17 @@ def frontEndStress():
     list =[4073.333252,	4143.07666,	4048.717773, 4100.512695, 4137.94873,	 4192.307617, 4106.666504, 4145.12793, 4174.358887,4154.358887, 4101.538574, 4024.102539, 4151.794922, 4124.102539]
     from firebase import firebase
     firebase = firebase.FirebaseApplication('https://cerebrex-101.firebaseio.com', None)
-    update = firebase.put('/Results/-LdjktIjCZZUtr2wyqa8', "predictionStress", str(stressValue(list)[0]))
 
-    result = firebase.get('/Results', '-LdjktIjCZZUtr2wyqa8')
+    update = firebase.put('/Stress/-LdrScJCDAWx5idPslrB', "predictionStress", str(stressValue(list)[0]))
+
+    result = firebase.get('/Stress', '-LdrScJCDAWx5idPslrB')
 
     return result
 while True:
     start = time.time()
-    print(frontEndSad(backEnd()))
-    print(frontEndSkip(backEnd()))
-    # print(frontEndStress())
+    # print(frontEndSad(backEnd()))
+    # print(frontEndSkip(backEnd()))
+    print(frontEndStress())
     end = time.time()
     print("Time taken :", end - start)
 
