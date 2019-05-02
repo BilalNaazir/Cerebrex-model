@@ -2,6 +2,7 @@ from SadModel import predictedValue
 from SkipModel import skipValue
 from StressModel import stressValue
 import time
+#
 
 def backEnd():
     from firebase import firebase   #Connecting to the backend's firebase containing live raw data
@@ -46,7 +47,7 @@ while True:
     start = time.time()
     print(frontEndSad(backEnd()))
     print(frontEndSkip(backEnd()))
-    print(frontEndStress())
+    # print(frontEndStress())
     end = time.time()
     print("Time taken :", end - start)
 
