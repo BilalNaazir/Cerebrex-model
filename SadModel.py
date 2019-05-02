@@ -21,7 +21,6 @@ from sklearn.linear_model import LogisticRegression
 logmodel=LogisticRegression()
 logmodel.fit(x_train,y_train)
 predictions=logmodel.predict(x_test)
-
 filename = 'pickleSadmodel.sav'
 pickle.dump(logmodel, open(filename, 'wb'))
 loaded_sad_model = pickle.load(open(filename, 'rb'))
