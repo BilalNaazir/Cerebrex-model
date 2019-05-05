@@ -58,6 +58,7 @@ def frontEndStress(list):
     result = firebase.get('/Stress', '-LdrScJCDAWx5idPslrB')
 
     return result
+
 while True:
     start = time.time()
     print('sad',frontEndSad(backEnd()))
