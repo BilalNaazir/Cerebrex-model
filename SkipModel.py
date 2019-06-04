@@ -21,6 +21,12 @@ from sklearn.linear_model import LogisticRegression
 logmodel=LogisticRegression()
 logmodel.fit(x_train,y_train)
 predictions=logmodel.predict(x_test)
+
+
+
+
+
+
 filename = 'pickleSkipmodel.sav'
 pickle.dump(logmodel, open(filename, 'wb'))
 loaded_model = pickle.load(open(filename, 'rb'))
